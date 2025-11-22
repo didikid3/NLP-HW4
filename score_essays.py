@@ -78,11 +78,9 @@ def create_prompt(assignment: str, essay_text: str, prompt_id: int = 0) -> str:
         student's overall quality of writing based on the assignment prompt.
 
         Return your answer in the exact JSON format:
-        ```
         {
             "score": <numeric score between 1 and 6>
         }
-        ```
         """
     elif prompt_id == 1:
         pass
