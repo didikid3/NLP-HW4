@@ -209,9 +209,9 @@ def parse_score(response_text: str) -> Optional[float]:
             pass
 
     # Strategy 2: Extract first number in range 1-6
-    # numbers = re.findall(r'\b([1-6])\b', response_text)
-    # if numbers:
-    #     return float(numbers[0])
+    numbers = re.findall(r'\b([1-6])\b', response_text)
+    if numbers:
+        return float(numbers[0])
 
     # Strategy 3: Look for "score:" or "score is" patterns
     match = re.search(r'"?score"?\s*[:=]\s*(\d+)', response_text, re.IGNORECASE)

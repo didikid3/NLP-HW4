@@ -12,19 +12,19 @@
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=validate-small.out
 
-# python score_essays.py \
-#     --limit 1000 \
-#     --input-file train_dev.csv \
-#     --output-file results-0.jsonl \
-#     --evaluate \
-#     --prompt-id 0
+python score_essays.py \
+    --limit 1000 \
+    --input-file train_dev.csv \
+    --output-file results-0.jsonl \
+    --evaluate \
+    --prompt-id 0
 
-# python score_essays.py \
-#     --limit 1000 \
-#     --input-file train_dev.csv \
-#     --output-file results-1.jsonl \
-#     --evaluate \
-#     --prompt-id 1
+python score_essays.py \
+    --limit 1000 \
+    --input-file train_dev.csv \
+    --output-file results-1.jsonl \
+    --evaluate \
+    --prompt-id 1
 
 python score_essays.py \
     --limit 1000 \
