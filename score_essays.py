@@ -211,7 +211,8 @@ def parse_score(response_text: str) -> Optional[float]:
     #     return float(numbers[0])
 
     # Strategy 3: Look for "score:" or "score is" patterns
-    match = re.search(r'score[:\s]+(\d+)', response_text, re.IGNORECASE)
+    match = re.search(r'"?score"?\s*[:=]\s*(\d+)', response_text, re.IGNORECASE)
+
     if match:
         return float(match.group(1))
 
