@@ -14,14 +14,14 @@
 
 # PROMPT 1
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-0-qwen.jsonl \
     --evaluate \
     --prompt-id 0
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-0-hf.jsonl \
     --evaluate \
@@ -29,7 +29,7 @@ python score_essays.py \
     --prompt-id 0
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-0-ibm.jsonl \
     --evaluate \
@@ -38,14 +38,14 @@ python score_essays.py \
 
 # PROMPT 2
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-1-qwen.jsonl \
     --evaluate \
     --prompt-id 1
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-1-hf.jsonl \
     --evaluate \
@@ -53,7 +53,7 @@ python score_essays.py \
     --prompt-id 1
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-1-ibm.jsonl \
     --evaluate \
@@ -62,14 +62,14 @@ python score_essays.py \
     
 # PROMPT 3
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-2-qwen.jsonl \
     --evaluate \
     --prompt-id 2
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-2-hf.jsonl \
     --evaluate \
@@ -77,7 +77,7 @@ python score_essays.py \
     --prompt-id 2
 
 python score_essays.py \
-    -- limit 1000 \
+    --limit 1000 \
     --input-file train_dev.csv \
     --output-file results-2-ibm.jsonl \
     --evaluate \
