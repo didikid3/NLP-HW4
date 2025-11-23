@@ -4,10 +4,10 @@
 #SBATCH --account=eecs595f25_class
 #SBATCH --partition=spgpu
 #SBATCH --gpus=1
-#SBATCH --time=00:20:00
+#SBATCH --time=00:35:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=5g
+#SBATCH --mem-per-cpu=20g
 #SBATCH --mail-user=bchao@umich.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=validate-full.out

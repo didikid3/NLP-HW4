@@ -156,8 +156,6 @@ def create_prompt(assignment: str, essay_text: str, prompt_id: int = 0) -> str:
         "score": <1–6>,
         "reasoning": "<2–4 sentence explanation>"
         }
-
-        The JSON key must be exactly "score" (singular). Never output "scores".
         No backticks. No extra text.
         """
 
