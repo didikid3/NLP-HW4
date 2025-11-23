@@ -7,7 +7,7 @@
 #SBATCH --time=00:20:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=16g
+#SBATCH --mem-per-cpu=5g
 #SBATCH --mail-user=bchao@umich.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=validate-full.out

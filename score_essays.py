@@ -83,9 +83,82 @@ def create_prompt(assignment: str, essay_text: str, prompt_id: int = 0) -> str:
         }
         """
     elif prompt_id == 1:
-        pass
+        prompt = """You are an expert essay grader. 
+        Your task is to evaluate essays on a 1–6 Holistic Scale.
+        Your goal is to give a single holistic score (1–6) 
+        that reflects the student's overall quality of writing based on the assignment prompt.
+
+        Scoring Criteria:
+        6 - Exemplary:
+        - Fully addresses the prompt with a clear, well-developed response.
+        - Ideas are organized with strong coherence and logical transitions.
+        - Evidence is accurate, relevant, and well integrated.
+        - Strong command of language; minimal errors.
+
+        5 - Strong:
+        - Clearly addresses the prompt with good development.
+        - Logical organization.
+        - Relevant evidence with some variety.
+        - Generally strong language.
+
+        4 - Adequate:
+        - Addresses the prompt but development may be uneven.
+        - Ideas generally organized, but transitions may be weak.
+        - Evidence is correct but limited.
+        - Functional but simple language; errors do not impede meaning.
+
+        3 - Developing:
+        - Partially addresses the prompt or loosely connects to it.
+        - Weak or confusing organization.
+        - Insufficient evidence.
+        - Frequent language issues; errors sometimes impede clarity.
+
+        2 - Weak:
+        - Minimally addresses the prompt.
+        - Poor organization.
+        - Inaccurate, missing, or irrelevant evidence.
+        - Limited or unclear language; errors often impede understanding.
+
+        1 - Minimal:
+        - Does not address the prompt.
+        - No real organization.
+        - Very difficult to understand; severe, frequent errors.
+
+        OUTPUT INSTRUCTIONS:
+        You must return ONLY valid JSON. No backticks, no markdown formatting, 
+        no extra explanation before or after.
+
+        Return your answer in the exact format:
+        {
+            "score": <number between 1 and 6>,
+            "reasoning": "<2–4 sentence explanation of why this score was given>"
+        }
+
+        Remember: Output ONLY the JSON object.
+        """
     elif prompt_id == 2:
-        pass
+        prompt = """
+        You are an expert human writing evaluator trained on large-scale standardized test scoring.
+
+        Your task is to:
+        1. Internally evaluate the essay step-by-step according to the rubric.
+        2. Summarize your reasoning in 2–4 sentences.
+        3. Output ONLY valid JSON with the score and reasoning.
+
+        Holistic Rubric (1–6):
+        [include your rubric as-is]
+
+        When producing your final answer:
+        - Do NOT reveal your step-by-step analysis.
+        - Output ONLY the final JSON in this format:
+
+        {
+        "score": <1–6>,
+        "reasoning": "<2–4 sentence explanation>"
+        }
+
+        No backticks. No extra text.
+        """
 
     prompt += f"Assignemnt Prompt: {assignment} \n\nEssay Text: {essay_text}"
     return prompt.strip()
@@ -124,7 +197,13 @@ def parse_score(response_text: str) -> Optional[float]:
         if 'score' in data:
             return float(data['score'])
     except json.JSONDecodeError:
-        pass
+        try:
+            response_text = response_text[7:-3]
+            data = json.loads(response_text)
+            if 'score' in data:
+                return float(data['score'])
+        except:
+            pass
 
     # Strategy 2: Extract first number in range 1-6
     # numbers = re.findall(r'\b([1-6])\b', response_text)
@@ -132,9 +211,9 @@ def parse_score(response_text: str) -> Optional[float]:
     #     return float(numbers[0])
 
     # Strategy 3: Look for "score:" or "score is" patterns
-    # match = re.search(r'score[:\s]+(\d+)', response_text, re.IGNORECASE)
-    # if match:
-    #     return float(match.group(1))
+    match = re.search(r'score[:\s]+(\d+)', response_text, re.IGNORECASE)
+    if match:
+        return float(match.group(1))
 
     # Strategy 4: Extract any number and validate it's in valid range
     # numbers = re.findall(r'\b(\d+(?:\.\d+)?)\b', response_text)
