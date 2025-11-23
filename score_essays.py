@@ -157,6 +157,7 @@ def create_prompt(assignment: str, essay_text: str, prompt_id: int = 0) -> str:
         "reasoning": "<2–4 sentence explanation>"
         }
 
+        The JSON key must be exactly "score" (singular). Never output "scores".
         No backticks. No extra text.
         """
 
@@ -196,12 +197,16 @@ def parse_score(response_text: str) -> Optional[float]:
         data = json.loads(response_text)
         if 'score' in data:
             return float(data['score'])
+        if 'scores' in data:
+            return float(data['scores'])
     except json.JSONDecodeError:
         try:
             response_text = response_text[7:-3]
             data = json.loads(response_text)
             if 'score' in data:
                 return float(data['score'])
+            if 'scores' in data:
+                return float(data['scores'])
         except:
             pass
 
